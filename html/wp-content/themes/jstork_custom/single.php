@@ -9,7 +9,7 @@
 <?php else : ?>
 
 <div id="content">
-<div id="inner-content" class="wrap page-full wide cf">
+<div id="inner-content" class="wrap cf">
 
 <main id="main" class="m-all t-all d-5of7 cf" role="main">
 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
@@ -91,14 +91,6 @@ wp_link_pages( array(
 </div>
 <?php endif; ?>
 
-<?php if(is_singular('post')):?>
-<footer class="article-footer">
-<?php echo get_the_category_list(); ?>
-<?php the_tags( '<p class="tags">', '', '</p>' ); ?>
-</footer>
-<?php endif; ?>
-
-
 <?php if ( get_option( 'fbbox_options_url' ) ) : ?>
 <div class="fb-likebtn wow animated fadeIn cf" data-wow-delay="0.5s">
 <?php $fburl = get_option( 'fbbox_options_url' );?>
@@ -121,17 +113,6 @@ fjs.parentNode.insertBefore(js, fjs);
 <?php if( !is_mobile() ): ?><p class="small">最新記事をお届けします。</p><?php endif; ?></div></div></div>
 <?php endif; ?>
 
-
-<?php if ( !get_option( 'sns_options_hide' ) ) : ?>
-<div class="sharewrap wow animated fadeIn" data-wow-delay="0.5s">
-<?php if ( get_option( 'sns_options_text' ) ) : ?>
-<h3><?php echo get_option( 'sns_options_text' ); ?></h3>
-<?php endif; ?>
-<?php get_template_part( 'parts_sns' ); ?>
-</div>
-<?php endif; ?>
-
-
 <?php if ( is_active_sidebar( 'cta' ) ) : ?>
 <div class="cta-wrap wow animated fadeIn" data-wow-delay="0.7s">
 <?php dynamic_sidebar( 'cta' ); ?>
@@ -142,12 +123,10 @@ fjs.parentNode.insertBefore(js, fjs);
 
 </article>
 
-<?php get_template_part( 'parts_singlefoot' ); ?>
-
 <?php endwhile; ?>
 <?php endif; ?>
 </main>
-
+<?php get_sidebar(); ?>
 </div>
 </div>
 <?php endif; wp_reset_query(); //ワンカラム条件分岐END ?>
