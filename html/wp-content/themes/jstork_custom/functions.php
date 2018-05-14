@@ -34,3 +34,38 @@ function saude_child_pages_shortcode_template($template) {
 EOF;
     return $template;
 }
+
+//カスタム投稿設定
+add_action( 'init', 'saude_create_post_type' );
+function saude_create_post_type() {
+    register_post_type( 'mnn', [ // 投稿タイプ名の定義
+        'labels' => [
+            'name'          => 'MNN', // 管理画面上で表示する投稿タイプ名
+            'singular_name' => 'mnn',    // カスタム投稿の識別名
+        ],
+        'public'        => true,  // 投稿タイプをpublicにするか
+        'has_archive'   => true, // アーカイブ機能ON/OFF
+        'menu_position' => 5,     // 管理画面上での配置場所
+        'rewrite'            => array(  // パーマリンク設定
+			'slug' => 'mnn',
+			'with_front' => false,
+		),
+    ]);
+}
+add_filter('post_type_link', 'saude_mnn_permalink', 1, 3);
+function saude_mnn_permalink($post_link, $id = 0, $leavename) {
+    global $wp_rewrite;
+    $post = &get_post($id);
+    if ( is_wp_error( $post ) )
+        return $post;
+    $newlink = $wp_rewrite->get_extra_permastruct($post->post_type);
+    $newlink = str_replace('%'.$post->post_type.'%', $post->ID, $newlink);
+    $newlink = home_url(user_trailingslashit($newlink));
+    return $newlink;
+}
+add_action('init', 'saude_mnn_rewrite');
+function saude_mnn_rewrite() {
+    global $wp_rewrite;
+    $wp_rewrite->add_rewrite_tag('%mnn%', '([0-9]+)', 'post_type=mnn&p=');
+}
+
