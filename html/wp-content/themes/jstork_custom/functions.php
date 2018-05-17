@@ -166,3 +166,26 @@ if (!function_exists('breadcrumb')) {
         echo $str;
     }
 }
+
+//PDF Embedderビューアの横幅調整
+add_filter( 'wp_footer', function() {
+    ?>
+    <script>
+        var timeoutId ;
+        window.addEventListener( "load", function () {
+            fixPdfEmbedderWidth(timeoutId);
+        } ) ;
+        window.addEventListener( "resize", function () {
+            fixPdfEmbedderWidth(timeoutId);
+        } ) ;
+        function fixPdfEmbedderWidth(myTimeoutId) {
+            // setTimeout()がセットされていたら無視
+            if ( myTimeoutId ) return ;
+            myTimeoutId = setTimeout( function () {
+                myTimeoutId = 0 ;
+                $('.pdfemb-viewer').css('width', '-=2');
+            }, 500 ) ;
+        }
+    </script>
+    <?php
+}, 100 );
