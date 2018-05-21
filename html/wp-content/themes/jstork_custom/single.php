@@ -43,8 +43,11 @@
 <?php the_post_thumbnail(); ?>
 </figure>
 <?php endif; ?>
+<?php $post_type = get_post_type(); ?>
+<?php if($post_type != 'mnn') : ?>
 <?php if ( !get_option( 'sns_options_hide' ) ) : ?>
 <?php get_template_part( 'parts_sns_short' ); ?>
+<?php endif; ?>
 <?php endif; ?>
 </header>
 

@@ -53,6 +53,7 @@ function saude_create_post_type() {
 		),
     ]);
 }
+
 add_filter('post_type_link', 'saude_mnn_permalink', 1, 3);
 function saude_mnn_permalink($post_link, $id = 0, $leavename) {
     global $wp_rewrite;
@@ -68,6 +69,12 @@ add_action('init', 'saude_mnn_rewrite');
 function saude_mnn_rewrite() {
     global $wp_rewrite;
     $wp_rewrite->add_rewrite_tag('%mnn%', '([0-9]+)', 'post_type=mnn&p=');
+}
+add_filter( 'getarchives_where', 'saude_mnn_archive_where', 10, 2 );
+function saude_mnn_archive_where( $where, $args ){  
+    $post_type  = isset( $args['post_type'] ) ? $args['post_type'] : 'post';
+    $where = "WHERE post_type = '$post_type' AND post_status = 'publish'";
+    return $where;
 }
 
 //MNNのbasic認証設定用関数（header.phpで呼ぶ）
@@ -90,6 +97,7 @@ if (!function_exists('breadcrumb')) {
     function breadcrumb($divOption = array("id" => "breadcrumb", "class" => "breadcrumb inner wrap cf")){
         global $post;
         $str ='';
+        $post_type = get_post_type();
         if(!get_option('side_options_pannavi')){
             if(!is_home()&&!is_front_page()&&!is_admin() ){
                 $tagAttribute = '';
@@ -110,6 +118,9 @@ if (!function_exists('breadcrumb')) {
                     }
                     $str.='<li itemscope itemtype="//data-vocabulary.org/Breadcrumb"><span itemprop="title">'. $cat -> name . '</span></li>';
                 } elseif(is_single()){
+                    if($post_type == 'mnn') {
+                        $str.= '<li><a href="/mnn">MNN</a></li>';
+                    }
                     $categories = get_the_category($post->ID);
                     $cat = $categories[0];
                     if($cat -> parent != 0){
@@ -133,6 +144,12 @@ if (!function_exists('breadcrumb')) {
                     }
                     $str.= '<li>'. $post -> post_title .'</li>';
                 } elseif(is_date()){
+                    if($post_type == 'mnn') {
+                        $str.= '<li><a href="/mnn">MNN</a></li>';
+                    }
+                    add_filter('year_link', 'saude_mnn_fix_date_archive_links');
+                    add_filter('month_link', 'saude_mnn_fix_date_archive_links');
+                    add_filter('day_link', 'saude_mnn_fix_date_archive_links');
                     if( is_year() ){
                         $str.= '<li>' . get_the_time('Y') . '年</li>';
                     } else if( is_month() ){
@@ -146,6 +163,9 @@ if (!function_exists('breadcrumb')) {
                     if(is_year() && is_month() && is_day() ){
                         $str.= '<li>' . wp_title('', false) . '</li>';
                     }
+                    remove_filter('year_link', 'saude_mnn_fix_date_archive_links');
+                    remove_filter('month_link', 'saude_mnn_fix_date_archive_links');
+                    remove_filter('day_link', 'saude_mnn_fix_date_archive_links');
                 } elseif(is_search()) {
                     $str.='<li itemscope itemtype="//data-vocabulary.org/Breadcrumb"><span itemprop="title">「'. get_search_query() .'」で検索した結果</span></li>';
                 } elseif(is_author()){
@@ -156,8 +176,10 @@ if (!function_exists('breadcrumb')) {
                     $str.= '<li><span itemprop="title">'. $post -> post_title .'</span></li>';
                 } elseif(is_404()){
                     $str.='<li>ページがみつかりません。</li>';
-                } else{
-                    $str.='<li></li>';
+                } else {
+                    if($post_type == 'mnn') {
+                        $str.= '<li>MNN</li>';
+                    }
                 }
                 $str.='</ul>';
                 $str.='</div>';
@@ -165,6 +187,14 @@ if (!function_exists('breadcrumb')) {
         }
         echo $str;
     }
+}
+
+function saude_mnn_fix_date_archive_links($string){
+    $post_type = get_post_type();
+    if($post_type != 'post') {
+        $string = str_replace('blog/', $post_type . '/', $string);
+    }
+    return $string;
 }
 
 //PDF Embedderビューアの横幅調整
