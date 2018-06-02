@@ -1,12 +1,14 @@
 <?php
      //MNN用Basic認証
+/* 動作確認のため一時的に無効化
      if(!is_home()): 
-          if(get_post_type() === 'mnn'): 
+          if(get_post_type() === 'mnn' || is_page( 'member-calendar')): 
                $userArray = array("saude" => "hdtnndg"
           );
           saude_mnn_basic_auth($userArray); 
           endif;
      endif;
+*/
 ?>
 <!doctype html>
 <!--[if lt IE 7]><html <?php language_attributes(); ?> class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->

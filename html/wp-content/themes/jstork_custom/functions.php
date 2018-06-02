@@ -78,7 +78,7 @@ function saude_mnn_archive_where( $where, $args ){
 }
 
 //MNNのbasic認証設定用関数（header.phpで呼ぶ）
-function saude_mnn_basic_auth($auth_list,$realm="Restricted Area",$failed_text="ログインに失敗したか、期限が切れてしまいました。この画面をリロードして、もう一度ログインを試してみてください。<br/><br/>何度リロードしてもログイン画面が出ない方へ。FacebookやLINEなど、アプリから開くブラウザでの閲覧はできません。普通のブラウザでお試しください。<br/><br/>G.R.E.S.Saúde Yokohamangueira"){ 
+function saude_mnn_basic_auth($auth_list,$realm="Members Only",$failed_text="ログインに失敗したか、期限が切れてしまいました。この画面をリロードして、もう一度ログインを試してみてください。<br/><br/>何度リロードしてもログイン画面が出ない方へ。FacebookやLINEなど、アプリから開くブラウザでの閲覧はできません。普通のブラウザでお試しください。<br/><br/>G.R.E.S.Saúde Yokohamangueira"){ 
 	if (isset($_SERVER['PHP_AUTH_USER']) and isset($auth_list[$_SERVER['PHP_AUTH_USER']])){
 	if ($auth_list[$_SERVER['PHP_AUTH_USER']] == $_SERVER['PHP_AUTH_PW']){
 	return $_SERVER['PHP_AUTH_USER'];

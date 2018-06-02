@@ -23,11 +23,11 @@
 /**
  * Set your color scheme below
  */
-$calColorBgDark      = '#c3d9ff';	// dark background color
-$calColorTextOnDark  = '#000000';	// text appearing on top of dark bg color
-$calColorBgLight     = '#e8eef7';	// light background color
-$calColorTextOnLight = '#000000';	// text appearing on top of light bg color
-$calColorBgToday     = '#ffffcc';	// background color for "today" box
+$calColorBgDark      = '#ed008c';	// dark background color
+$calColorTextOnDark  = '#ffffff';	// text appearing on top of dark bg color
+$calColorBgLight     = 'rgba(0,0,0,.1)';	// light background color
+$calColorTextOnLight = '#017743';	// text appearing on top of light bg color
+$calColorBgToday     = '#e7fee7';	// background color for "today" box
 
 /**
  * Orange color scheme
@@ -125,7 +125,6 @@ div.wk-dayname {
 div.wk-today {
 	background-color: {$calColorBgLight} !important;
 	border: 1px solid #EEEEEE !important;
-	color: {$calColorTextOnLight} !important;
 }
 td.wk-allday {
 	background-color: #EEEEEE !important;
@@ -156,8 +155,11 @@ td.st-dtitle {
 	/* cell borders */
 	border-top: 1px solid {$calColorBgDark} !important;
 }
-td.st-bg-today {
+td.st-bg-td-last {
 	background-color: {$calColorBgToday} !important;
+}
+td.st-dtitle-today {
+	border: 1px solid {$calColorTextOnLight} !important;
 }
 
 /* agenda view */
