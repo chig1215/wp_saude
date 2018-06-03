@@ -219,3 +219,43 @@ add_filter( 'wp_footer', function() {
     </script>
     <?php
 }, 100 );
+
+/**
+ * wp_title()の日付アーカイブのタイトルを変更します。
+ */
+function saude_adjust_date_title( $title, $sep, $seplocation ) {
+    $m        = get_query_var( 'm' );
+    $year     = get_query_var( 'year' );
+    $monthnum = get_query_var( 'monthnum' );
+    $day      = get_query_var( 'day' );
+    $date_title = '';
+ 
+    // mパラメータがある場合 (パーマリンク設定がデフォルトの場合の日付アーカイブ)
+    if ( is_archive() && ! empty( $m ) ) {
+        $my_year  = substr( $m, 0, 4 );
+        $my_month = substr( $m, 4, 2 );
+        $my_day   = substr( $m, 6, 2 );
+        $date_title    = $my_year . '年' . ( $my_month ? $my_month . '月' : '' ) . ( $my_day ? $my_day . '日' : '' );
+    }
+    // yearパラメータがある場合 (パーマリンク設定がデフォルト以外の日付アーカイブ)
+    if ( is_archive() && ! empty( $year ) ) {
+        $date_title = $year . '年';
+        if ( ! empty( $monthnum ) ) {
+            $date_title .= zeroise( $monthnum, 2 ) . '月';
+        }
+        if ( ! empty( $day ) ) {
+            $date_title .= zeroise( $day, 2 ) . '日';
+        }
+    }
+    // 日付調整を行ったタイトルがあれば区切り文字を追加(左か右)
+    if ( '' != $date_title ) {
+        if ( 'right' == $seplocation ) {
+            $title = $date_title . " $sep ";
+        } else {
+            $title = " $sep " . $date_title;
+        }
+    }
+    
+    return $title;
+}
+add_filter( 'wp_title', 'saude_adjust_date_title', 10, 3 );
