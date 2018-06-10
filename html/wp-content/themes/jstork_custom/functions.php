@@ -259,3 +259,40 @@ function saude_adjust_date_title( $title, $sep, $seplocation ) {
     return $title;
 }
 add_filter( 'wp_title', 'saude_adjust_date_title', 10, 3 );
+
+// 検索の調整
+function saude_search_where($where) {
+    if( is_search() ) {
+        $where_new = $where;
+        $search_str = " AND wp_posts.post_type = 'post'";
+        $replace_str = "";
+        $post_types = htmlspecialchars($_REQUEST["post_type"]);
+        if($post_types === "mnn") {
+            $where_new = str_replace($search_str, " AND wp_posts.post_type = 'mnn'", $where);
+        } else {
+            foreach ((array)$post_types as $post_type) {
+                if(!empty($post_type)) {
+                    $replace_str .= " OR wp_posts.post_type = '" . $post_type . "'";
+                }
+            }
+            if(!empty($replace_str)) {
+                $where_new = str_replace($search_str, " AND (wp_posts.post_type = 'post'" . $replace_str . ")", $where);
+            }
+        }
+        return $where_new;
+    }
+    return $where;
+}
+add_filter('posts_where', 'saude_search_where' );
+
+function saude_custom_search_template($template){
+  if ( is_search() ){
+    $post_types = htmlspecialchars($_REQUEST["post_type"]);
+    foreach ( (array) $post_types as $post_type )
+      $templates[] = "search-{$post_type}.php";
+    $templates[] = 'search.php';
+    $template = get_query_template('search',$templates);
+  }
+  return $template;
+}
+add_filter('template_include','saude_custom_search_template');

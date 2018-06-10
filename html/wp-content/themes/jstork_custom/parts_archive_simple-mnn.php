@@ -13,10 +13,6 @@
 <span class="writer name author"><span class="fn"><?php the_author(); ?></span></span>
 </p>
 
-<?php if( !is_mobile() ): ?>
-<div class="description"><?php the_excerpt(); ?></div>
-<?php endif; ?>
-
 </section>
 </a>
 </article>
