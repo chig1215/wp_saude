@@ -161,6 +161,22 @@ td.st-bg-td-last {
 td.st-dtitle-today {
 	border: 1px solid {$calColorTextOnLight} !important;
 }
+span.te-t,
+span.te-s,
+span.cloc,
+div.rb-ni{
+    display:block;
+    white-space:normal;
+    font-size: 13px;
+}
+th.mv-dayname,
+td.st-dtitle,
+td.st-c {
+	font-size: 13px;
+}
+div.bubble {
+	width: 250px !important;
+}
 
 /* agenda view */
 div.scrollbox {
