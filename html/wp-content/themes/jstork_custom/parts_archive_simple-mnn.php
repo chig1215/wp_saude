@@ -23,27 +23,20 @@
 <?php elseif(is_search()): ?>
 <article id="post-not-found" class="hentry cf">
 <header class="article-header">
-<h1>記事が見つかりませんでした。</h1>
+<h1>MNNが見つかりませんでした。</h1>
 </header>
 
 <section class="entry-content">
 
-<p>お探しのキーワードで記事が見つかりませんでした。別のキーワードで再度お探しいただくか、カテゴリ一覧からお探し下さい。</p>
+<p>お探しのMNNが見つかりませんでした。</p>
 
 <div class="search">
-<h2>キーワード検索</h2>
-<?php get_search_form(); ?>
-</div>
-
-
-<div class="cat-list cf">
-<h2>カテゴリーから探す</h2>
-<ul>
-<?php $args = array(
-'title_li' => '',
-); ?>
-<?php wp_list_categories($args); ?>
-</ul>
+<h2>MNNを検索する</h2>
+<form role="search" method="get" id="searchform" class="searchform cf" action="/">
+	<input type="search" placeholder="検索する" value="" name="s" id="s" />
+	<button type="submit" id="searchsubmit" ><i class="fa fa-search"></i></button>
+	<input type="hidden" name="post_type" value="mnn">
+</form>
 </div>
 
 </section>

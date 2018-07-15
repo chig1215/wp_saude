@@ -260,7 +260,9 @@ function saude_adjust_date_title( $title, $sep, $seplocation ) {
 }
 add_filter( 'wp_title', 'saude_adjust_date_title', 10, 3 );
 
-// 検索の調整
+/**
+ * MNN検索用の調整
+ */
 function saude_search_where($where) {
     if( is_search() ) {
         $where_new = $where;
@@ -296,3 +298,37 @@ function saude_custom_search_template($template){
   return $template;
 }
 add_filter('template_include','saude_custom_search_template');
+
+/**
+ * 固定ページ改ページネーションスタイル調整
+ */
+add_filter( 'wp_link_pages_args', 'saude_wp_link_pagination');
+function saude_wp_link_pagination() {
+    $defaults = array(
+     'before' => '<nav class="pagination cf saude"><ul class="page-numbers">',
+     'after' => '</ul></nav>',
+     'link_before' => '<span aria-current="page" class="page-numbers current">',
+     'link_after' => '</span>',
+     'next_or_number' => 'number',
+     'separator' => '',
+     'nextpagelink' => __( '>' ),
+     'previouspagelink' => __( '<' ),
+     'pagelink' => '%',
+     'echo' => 1
+     );
+     return $defaults;
+}
+add_filter( 'wp_footer', function() {
+    ?>
+    <script>
+        $('nav.pagination.cf.saude ul.page-numbers a').addClass("page-numbers");
+        $('nav.pagination.cf.saude ul.page-numbers a span').contents().unwrap();
+        $('nav.pagination.cf.saude ul.page-numbers').children().wrap('<li></li>');
+        var replacedStr = $('nav.pagination.cf.saude ul.page-numbers').html().replace(/<li>/g, ' <li>');
+        $('nav.pagination.cf.saude ul.page-numbers').html(replacedStr);
+        $('nav.pagination.cf.saude').clone().prependTo('main#main');
+    </script>
+    <?php
+}, 100 );
+
+
