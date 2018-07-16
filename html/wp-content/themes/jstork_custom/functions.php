@@ -330,3 +330,15 @@ add_filter( 'wp_footer', function() {
     </script>
     <?php
 }, 100 );
+
+/**
+ * 横渡りに自分を表示しない
+ */
+add_filter('child-pages-shortcode-query', 'saude_child_pages_shortcode_query');
+function saude_child_pages_shortcode_query($args) {
+    $myId = get_the_ID();
+    if($myId) {
+        $args['exclude'] = $myId;
+    }
+    return $args;
+}
