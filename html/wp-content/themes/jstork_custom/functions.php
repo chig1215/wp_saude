@@ -330,5 +330,3 @@ add_filter( 'wp_footer', function() {
     </script>
     <?php
 }, 100 );
-
-

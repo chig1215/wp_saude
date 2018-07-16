@@ -26,7 +26,7 @@ echo '現在使用しているテンプレートファイル：'.$temp_name; // 
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title><?php wp_title(''); ?></title>
+<title><?php if(is_front_page()) { echo('横浜 野毛 桜木町のサンバチーム '); } ?><?php wp_title(''); ?></title>
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
