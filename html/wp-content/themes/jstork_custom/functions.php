@@ -280,6 +280,8 @@ function saude_search_where($where) {
             if(!empty($replace_str)) {
                 $where_new = str_replace($search_str, " AND (wp_posts.post_type = 'post'" . $replace_str . ")", $where);
             }
+            //メンバー専用ページは検索結果から除外
+            $where_new .= " AND id NOT IN (990,199)";
         }
         return $where_new;
     }
@@ -342,3 +344,8 @@ function saude_child_pages_shortcode_query($args) {
     }
     return $args;
 }
+
+/**
+ * アップデート自動更新の無効化
+ */
+define('AUTOMATIC_UPDATER_DISABLED',true);

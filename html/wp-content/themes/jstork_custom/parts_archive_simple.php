@@ -17,7 +17,7 @@ $cat = $cat[0];
 </figure>
 <?php else: ?>
 <figure class="eyecatch noimg">
-<img src="<?php echo get_template_directory_uri(); ?>/library/images/noimg.png">
+<img src="<?php echo get_stylesheet_directory_uri(); ?>/library/images/noimg.png">
 <span class="cat-name cat-id-<?php echo $cat->cat_ID;?>"><?php echo $cat->name; ?></span>
 </figure>
 <?php endif; ?>

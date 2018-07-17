@@ -7,15 +7,13 @@ echo '現在使用しているテンプレートファイル：'.$temp_name; // 
 ?>
 <?php
      //MNN用Basic認証
-/* 動作確認のため一時的に無効化
      if(!is_home()): 
-          if(get_post_type() === 'mnn' || is_page( 'member-calendar')): 
+          if(get_post_type() === 'mnn' || get_post_type() === 'sdm_downloads' || is_page( 'member_calendar') || is_page( 'saude_members_only')): 
                $userArray = array("saude" => "hdtnndg"
           );
           saude_mnn_basic_auth($userArray); 
           endif;
      endif;
-*/
 ?>
 <!doctype html>
 <!--[if lt IE 7]><html <?php language_attributes(); ?> class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
@@ -45,7 +43,9 @@ echo '現在使用しているテンプレートファイル：'.$temp_name; // 
 <![endif]-->
 
 <?php get_template_part( 'head' ); ?>
-
+<?php if ( is_home() || is_front_page() ) : ?>
+<meta property="og:image" content="https://gressaude.com/wp-content/uploads/2018/02/saude-main-visual.jpg" />
+<?php endif; ?>
 <?php wp_head(); ?>
 </head>
 
