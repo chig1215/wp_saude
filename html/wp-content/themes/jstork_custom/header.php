@@ -8,10 +8,9 @@ echo '現在使用しているテンプレートファイル：'.$temp_name; // 
 <?php
      //MNN用Basic認証
      if(!is_home()): 
-          if(get_post_type() === 'mnn' || get_post_type() === 'sdm_downloads' || is_page( 'member_calendar') || is_page( 'saude_members_only')): 
-               $userArray = array("saude" => "hdtnndg"
-          );
-          saude_mnn_basic_auth($userArray); 
+          if(get_post_type() === 'mnn' || get_post_type() === 'sdm_downloads' || is_page( 'saude_members_only')): 
+               $userArray = array("saude" => "hdtnndg");
+               saude_mnn_basic_auth($userArray); 
           endif;
      endif;
 ?>
@@ -29,10 +28,14 @@ echo '現在使用しているテンプレートファイル：'.$temp_name; // 
 <meta name="MobileOptimized" content="320">
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
+<?php if(!is_home()): ?>
+<?php if(get_post_type() === 'mnn' || get_post_type() === 'sdm_downloads' || is_page( 'member_calendar') || is_page( 'saude_members_only')): ?>
+<meta name="robots" content="noindex" />
+<?php endif; ?>
+<?php endif; ?>
+
 <?php if ( get_theme_mod( 'opencage_appleicon' ) ) : ?><link rel="apple-touch-icon" href="<?php echo get_theme_mod( 'opencage_appleicon' ); ?>"><?php endif; ?>
 <?php if ( get_theme_mod( 'opencage_favicon' ) ) : ?><link rel="icon" href="<?php echo get_theme_mod( 'opencage_favicon' ); ?>"><?php endif; ?>
-
-<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
 
 <!--[if IE]>
 <?php if ( get_theme_mod( 'opencage_favicon_ie' ) ) : ?><link rel="shortcut icon" href="<?php echo get_theme_mod( 'opencage_favicon_ie' ); ?>"><?php endif; ?>
