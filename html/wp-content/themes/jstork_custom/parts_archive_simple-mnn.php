@@ -13,6 +13,8 @@
 <span class="writer name author"><span class="fn"><?php the_author(); ?></span></span>
 </p>
 
+<div style="display: block;" class="description"><?php the_excerpt(); ?></div>
+
 </section>
 </a>
 </article>
