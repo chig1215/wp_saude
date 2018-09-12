@@ -169,6 +169,9 @@ div.rb-ni{
     white-space:normal;
     font-size: 13px;
 }
+div.rb-ni span.cloc{
+	display: none;
+}
 th.mv-dayname,
 td.st-dtitle,
 td.st-c {
