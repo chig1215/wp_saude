@@ -7,10 +7,10 @@ echo '現在使用しているテンプレートファイル：'.$temp_name; // 
 ?>
 <?php
      //MNN用Basic認証
-     if(!is_home()): 
-          if(get_post_type() === 'mnn' || get_post_type() === 'sdm_downloads' || is_page( 'saude_members_only')): 
-               $userArray = array("saude" => "hdtnndg");
-               saude_mnn_basic_auth($userArray); 
+     if(!is_home()):
+          if(get_post_type() === 'mnn' || get_post_type() === 'sdm_downloads' || is_page( 'saude_members_only')):
+               $userArray = array("saude" => "rwrdrsr");
+               saude_mnn_basic_auth($userArray);
           endif;
      endif;
 ?>
