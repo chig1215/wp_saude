@@ -50,6 +50,9 @@ echo '現在使用しているテンプレートファイル：'.$temp_name; // 
 <meta property="og:image" content="https://gressaude.com/wp-content/uploads/2018/02/saude-main-visual.jpg" />
 <?php endif; ?>
 <?php wp_head(); ?>
+<!-- 190519追加ここから -->
+<link rel="stylesheet" type="text/css" href="/add_css/style.css" media="all" />
+<!-- 190519追加ここまで -->
 </head>
 
 <body <?php body_class(); ?>>
@@ -74,6 +77,14 @@ echo '現在使用しているテンプレートファイル：'.$temp_name; // 
 <?php endif; ?>
 <?php endif; ?>
 </div>
+
+<!-- 190519追加ここから -->
+<ul class="header-sns-pc">
+  <li><a href="https://www.facebook.com/GresSaudeYokohamangueira/" target="_blank"><img src="/add_image/ico-facebook.png" alt="Facebook"></a></li>
+  <li><a href="https://twitter.com/gressaude" target="_blank"><img src="/add_image/ico-twitter.png" alt="Twitter"></a></li>
+  <li><a href="https://www.instagram.com/gressaude/" target="_blank"><img src="/add_image/ico-instagram.png" alt="Instagram"></a></li>
+</ul>
+<!-- 190519追加ここまで -->
 
 <?php if (!is_mobile()):?>
 <nav id="g_nav" role="navigation">
@@ -129,7 +140,20 @@ echo '現在使用しているテンプレートファイル：'.$temp_name; // 
      'depth' => 0,
      'fallback_cb' => ''
 )); ?>
+<!-- 190519追加ここから -->
+<div class="modal-sns">
+  <ul>
+    <li><a href="https://www.facebook.com/GresSaudeYokohamangueira/" target="_blank"><img src="add_image/ico-facebook.png" alt="Facebook"></a></li>
+    <li><a href="https://twitter.com/gressaude" target="_blank"><img src="add_image/ico-twitter.png" alt="Twitter"></a></li>
+    <li><a href="https://www.instagram.com/gressaude/" target="_blank"><img src="add_image/ico-instagram.png" alt="Instagram"></a></li>
+  </ul>
+</div>
+<!-- 190519追加ここまで -->
+<!-- 190519削除ここから -->
+<!--
 <button data-remodal-action="close" class="remodal-close"><span class="text gf">CLOSE</span></button>
+-->
+<!-- 190519削除ここまで -->
 </div>
 
 <?php endif; ?>
@@ -168,6 +192,18 @@ echo '現在使用しているテンプレートファイル：'.$temp_name; // 
 
 
 <?php get_template_part( 'parts_homeheader' ); ?>
+
+<!-- 190519追加ここから -->
+<?php if(is_home()): ?>
+<div class="topsns-sp">
+  <ul>
+    <li><a href="https://www.facebook.com/GresSaudeYokohamangueira/" target="_blank"><img src="/add_image/ico-facebook.png" alt="Facebook"></a></li>
+    <li><a href="https://twitter.com/gressaude" target="_blank"><img src="/add_image/ico-twitter.png" alt="Twitter"></a></li>
+    <li><a href="https://www.instagram.com/gressaude/" target="_blank"><img src="/add_image/ico-instagram.png" alt="Instagram"></a></li>
+  </ul>
+</div>
+<?php endif;?>
+<!-- 190519追加ここまで -->
 
 <?php breadcrumb(); ?>
 <?php endif; ?>
