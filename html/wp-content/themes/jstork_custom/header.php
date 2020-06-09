@@ -9,7 +9,7 @@ echo '現在使用しているテンプレートファイル：'.$temp_name; // 
      //MNN用Basic認証
      if(!is_home()):
           if(get_post_type() === 'mnn' || get_post_type() === 'sdm_downloads' || is_page( 'saude_members_only')):
-               $userArray = array("saude" => "rwrdrsr");
+               $userArray = array("saude" => "0202eduas");
                saude_mnn_basic_auth($userArray);
           endif;
      endif;
@@ -143,9 +143,9 @@ echo '現在使用しているテンプレートファイル：'.$temp_name; // 
 <!-- 190519追加ここから -->
 <div class="modal-sns">
   <ul>
-    <li><a href="https://www.facebook.com/GresSaudeYokohamangueira/" target="_blank"><img src="add_image/ico-facebook.png" alt="Facebook"></a></li>
-    <li><a href="https://twitter.com/gressaude" target="_blank"><img src="add_image/ico-twitter.png" alt="Twitter"></a></li>
-    <li><a href="https://www.instagram.com/gressaude/" target="_blank"><img src="add_image/ico-instagram.png" alt="Instagram"></a></li>
+    <li><a href="https://www.facebook.com/GresSaudeYokohamangueira/" target="_blank"><img src="/add_image/ico-facebook.png" alt="Facebook"></a></li>
+    <li><a href="https://twitter.com/gressaude" target="_blank"><img src="/add_image/ico-twitter.png" alt="Twitter"></a></li>
+    <li><a href="https://www.instagram.com/gressaude/" target="_blank"><img src="/add_image/ico-instagram.png" alt="Instagram"></a></li>
   </ul>
 </div>
 <!-- 190519追加ここまで -->
