@@ -41,7 +41,7 @@
 <?php endwhile; endif; ?>
 <?php wp_link_pages(); ?>
 <?php
-	if(!is_page( 'join') && !is_page( 'member_calendar') && !is_page( 'saude_members_only') && !is_page( 'contact') && !is_page( 'event')) {
+	if(!is_page( 'join') && !is_page( 'member_calendar') && !is_page( 'saude_members_only') && !is_page( 'contact') && !is_page( 'event') && !is_page( 'movies')) {
 		echo do_shortcode('[btn class="simple bg maru"]<a href="/join">サンバ体験・見学はこちら</a>[/btn]');
 	}
 ?>

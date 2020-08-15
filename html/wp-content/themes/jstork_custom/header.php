@@ -8,7 +8,7 @@ echo '現在使用しているテンプレートファイル：'.$temp_name; // 
 <?php
      //MNN用Basic認証
      if(!is_home()):
-          if(get_post_type() === 'mnn' || get_post_type() === 'sdm_downloads' || is_page( 'saude_members_only')):
+          if(get_post_type() === 'mnn' || get_post_type() === 'sdm_downloads' || is_page( 'saude_members_only') || is_page( 'movies')):
                $userArray = array("saude" => "0202eduas");
                saude_mnn_basic_auth($userArray);
           endif;
